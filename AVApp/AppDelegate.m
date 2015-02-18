@@ -7,8 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import <MediaPlayer/MediaPlayer.h>
 
-@interface AppDelegate ()
+@interface AppDelegate (){
+    MPMoviePlayerViewController *MPMPlayerController;
+}
 
 @end
 
@@ -16,8 +19,54 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    NSURL *filePath = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"202" ofType:@"MP4"]];
+//    
+//    MPMPlayerController = [[MPMoviePlayerViewController alloc]initWithContentURL:filePath ];
+//    MPMPlayerController.moviePlayer.backgroundView.backgroundColor = [UIColor whiteColor];
+//    MPMPlayerController.moviePlayer.controlStyle = MPMovieControlStyleNone;
+//    MPMPlayerController.view.frame = self.window.frame;
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(splashMoviePlayBackDidFinish:)
+//                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+//                                               object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] removeObserver:MPMPlayerController
+//                                                    name:MPMoviePlayerPlaybackDidFinishNotification
+//                                                  object:MPMPlayerController.moviePlayer];
+//    
+//    MPMPlayerController.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
+//    [MPMPlayerController.moviePlayer setFullscreen:YES animated:NO];
+//    
+//    [self.window.rootViewController.view addSubview:MPMPlayerController.view];
+//    [self.window makeKeyAndVisible];
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    self.window.rootViewController = [[ViewController alloc] init];
+//    [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
     return YES;
+}
+
+//詳細な再生時間。
+- (void)splashMoviePlayBackDidFinish:(NSNotification *)notification
+{
+    UIView *fadeView = [[UIView alloc]initWithFrame:self.window.frame];
+    fadeView.backgroundColor = [UIColor blackColor];
+    fadeView.alpha = 0.0f;
+    [self.window.rootViewController.view addSubview:fadeView];
+    
+    // Fadeout & remove
+    [UIView animateWithDuration:0.5f
+                     animations:^{
+                         fadeView.alpha = 1.0;
+                     }
+                     completion:^(BOOL finished){
+                         [fadeView removeFromSuperview];
+                         
+                         [[NSNotificationCenter defaultCenter] removeObserver:self];
+                         [MPMPlayerController.view removeFromSuperview];
+                     }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
