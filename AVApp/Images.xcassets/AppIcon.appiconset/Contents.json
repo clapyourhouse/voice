@@ -19,20 +19,9 @@
       "scale" : "2x"
     },
     {
-      "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Icon-60@3x.png",
+      "size" : "60x60",
       "scale" : "3x"
-    },
-    {
-      "idiom" : "iphone",
-      "size" : "40x40",
-      "unassigned" : true
-    },
-    {
-      "idiom" : "iphone",
-      "size" : "60x60",
-      "unassigned" : true
     }
   ],
   "info" : {

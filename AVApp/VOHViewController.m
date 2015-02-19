@@ -46,7 +46,7 @@
     walkthrough.nextButtonText = nil;
     // Add the walkthrough view to your view controller's view
     [self addChildViewController:walkthrough];
-    [self.view addSubview:walkthrough.view];
+//    [self.view addSubview:walkthrough.view];
 
 //    // ボタンを作成
 //    UIButton *button =
@@ -65,11 +65,10 @@
 //    [button addTarget:self
 //               action:@selector(button_Tapped:)
 //     forControlEvents:UIControlEventTouchUpInside];
-////    [walkthrough addPageWithView:button];
+    [walkthrough addPageWithView:_clbtn];
 //
 //    // ボタンをビューに追加
         [walkthrough.view addSubview:_clbtn];
-
 }
 
 /*
